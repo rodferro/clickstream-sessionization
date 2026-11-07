@@ -321,49 +321,59 @@ python scripts/profile_month.py --month 2019-10 > reports/profile_2019-10.txt
 
 ## Benchmark
 
-From [`reports/benchmark.md`](reports/benchmark.md): one run on an Apple M5 MacBook Air (10 cores,
-16 GB RAM, fanless), DuckDB memory limit 2 GB. Each stage of each day ran as its own process; peak
-memory is that process's peak RSS.
+From [`reports/benchmark.md`](reports/benchmark.md): three full runs (`scripts/benchmark.py --runs 3`)
+on an Apple M5 MacBook Air (10 cores, 16 GB RAM, fanless), DuckDB memory limit 2 GB, other CPU-heavy
+jobs stopped. Each stage of each day ran as its own process; peak memory is that process's peak RSS.
+Values are **median [min-max] across the three runs**.
 
-| Run | Time | Peak memory |
+Run conditions (recorded in `benchmark.md`): runs 1 and 2 on AC power, run 3 on battery (the laptop
+was unplugged during run 2 and its lid was briefly closed). Run 3's stage times fall
+within the range of runs 1 and 2.
+
+| Run | Time (s) | Peak memory (MB) |
 |---|---:|---:|
-| Default: `clickstream run --months 2019-10`, one process | 184.3 s | 1,849 MB |
+| Default: `clickstream run --months 2019-10`, one process | 111.8 [67.6-113.7] | 2,600 [2,033-2,778] |
 
-| Month | Stage | Runs | Total (s) | Median per run (s) | Max per run (s) | Median peak (MB) | Max peak (MB) |
-|---|---|---:|---:|---:|---:|---:|---:|
-| 2019-10 | ingest | 1 | 34.0 | | | 976 | 976 |
-| 2019-10 | silver | 31 | 85.5 | 2.60 | 4.70 | 1,414 | 1,715 |
-| 2019-10 | sessions | 31 | 68.7 | 2.22 | 3.19 | 1,203 | 1,436 |
-| 2019-10 | gold | 31 | 91.9 | 2.91 | 3.85 | 1,073 | 1,164 |
-| 2019-11 | ingest | 1 | 71.2 | | | 2,096 | 2,096 |
-| 2019-11 | silver | 30 | 185.4 | 4.05 | 30.97 | 1,533 | 1,981 |
-| 2019-11 | sessions | 30 | 135.1 | 3.10 | 21.53 | 1,455 | 2,168 |
-| 2019-11 | gold | 30 | 172.4 | 4.82 | 19.40 | 1,173 | 1,805 |
-| both | marts | 1 | 8.9 | | | 389 | 389 |
+| Month | Stage | Days | Total time (s) | Median time per day (s) | Max peak (MB) |
+|---|---|---:|---:|---:|---:|
+| 2019-10 | ingest | 1 | 17.1 [15.9-18.3] | | 1,445 [1,426-1,458] |
+| 2019-10 | silver | 31 | 38.4 [36.4-40.7] | 1.28 [1.19-1.33] | 1,972 [1,967-1,978] |
+| 2019-10 | sessions | 31 | 40.7 [37.1-44.2] | 1.33 [1.20-1.41] | 1,527 [1,510-1,528] |
+| 2019-10 | gold | 31 | 56.0 [52.2-59.0] | 1.84 [1.70-1.91] | 1,232 [1,230-1,242] |
+| 2019-11 | ingest | 1 | 28.9 [27.0-29.1] | | 2,596 [2,408-2,620] |
+| 2019-11 | silver | 30 | 69.9 [69.4-82.6] | 1.63 [1.58-1.65] | 2,344 [2,222-2,527] |
+| 2019-11 | sessions | 30 | 60.8 [57.6-65.9] | 1.64 [1.51-1.67] | 2,831 [2,824-3,118] |
+| 2019-11 | gold | 30 | 75.5 [71.1-77.5] | 2.07 [2.03-2.22] | 2,563 [2,536-2,615] |
+| both | marts | | 10.6 [10.3-10.7] | | 1,440 [1,418-1,568] |
 
 Sessionization engines alone, per day, same inputs:
 
-| Month | Engine | Total (s) | Median per day (s) | Median peak (MB) | Max peak (MB) |
-|---|---|---:|---:|---:|---:|
-| 2019-10 | DuckDB | 32.9 | 1.03 | 596 | 652 |
-| 2019-10 | Polars | 45.5 | 1.42 | 683 | 811 |
-| 2019-11 | DuckDB | 59.4 | 1.66 | 687 | 1,668 |
-| 2019-11 | Polars | 93.2 | 2.08 | 809 | 1,450 |
+| Month | Engine | Total time (s) | Median time per day (s) | Max peak (MB) |
+|---|---|---:|---:|---:|
+| 2019-10 | DuckDB | 18.1 [17.1-19.1] | 0.58 [0.55-0.61] | 660 [656-667] |
+| 2019-10 | Polars | 24.4 [22.6-25.5] | 0.79 [0.72-0.82] | 881 [880-889] |
+| 2019-11 | DuckDB | 25.0 [22.0-26.0] | 0.68 [0.65-0.71] | 1,940 [1,888-1,988] |
+| 2019-11 | Polars | 31.7 [29.5-32.7] | 0.92 [0.90-0.97] | 2,492 [2,482-2,496] |
 
 ![Peak memory per day](reports/figures/benchmark_memory.png)
 
 Peak memory follows the size of each day, not the amount processed so far: it rises with
 November's larger days and the mid-November spike, then falls back. Nov 15-17 are each over
-6 million events, about three times the trailing median (DQ warnings in `analysis.md`); at the 2 GB
-limit DuckDB spills to disk on those days, which is why they are the slow ones.
+6 million events, about three times the trailing median (DQ warnings in `analysis.md`), and they are
+also the slowest days.
+
+**Timings vary on this fanless laptop.** Per-stage totals stay within about 20% across runs, but the
+default one-month run took 67.6 s when it started on a cool machine (run 1) and 111.8-113.7 s when it
+started right after a full run (runs 2 and 3). An earlier single benchmark, run while other CPU-heavy
+jobs were active, was slower still; it was replaced by these three runs.
 
 ## Limitations
 
 - **Two months only.** Kaggle hosts Oct and Nov 2019. The dataset page links Dec 2019 - Apr 2020 on
   REES46's own server; `download.py` has a `DataSource` interface for adding that, but it isn't
   implemented.
-- **Timings are from one run on a fanless laptop** under sustained load; expect variance between runs.
-  Memory figures are the more stable result.
+- **Timings are from three runs on one fanless laptop**, and the default run varies a lot between a
+  cool and a warm machine (see Benchmark). Memory figures are the more stable result.
 - **Global steps aren't incremental.** The marts and `clickstream report` recompute over all data.
 - **UTC days.** The store's timezone isn't published, so day boundaries and daily metrics are UTC.
 - **No device data.** The original take-home's browser/OS/device breakdown can't be reproduced; entry
