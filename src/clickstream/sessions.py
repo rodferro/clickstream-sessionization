@@ -36,7 +36,7 @@ SESSION_VERSION = "sessions-v1"
 def load_events(paths: Paths, day: date) -> pa.Table:
     con = connect()
     src = sql_str(parquet_glob(partition_dir(paths.silver, day)))
-    return con.execute(
+    return con.sql(
         f"SELECT user_id, event_time, source_file, source_row FROM read_parquet({src}, hive_partitioning=false)"
     ).to_arrow_table()
 
@@ -45,7 +45,7 @@ def load_carry(paths: Paths, day: date) -> pa.Table:
     con = connect()
     src = sql_str(parquet_glob(partition_dir(paths.carry, day)))
     return (
-        con.execute(f"SELECT * FROM read_parquet({src}, hive_partitioning=false)")
+        con.sql(f"SELECT * FROM read_parquet({src}, hive_partitioning=false)")
         .to_arrow_table()
         .cast(CARRY_SCHEMA)
     )

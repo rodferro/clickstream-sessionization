@@ -47,15 +47,15 @@ def sessionize_day(
         FROM s
         """
     )
-    assignments = con.execute(
+    assignments = con.sql(
         "SELECT source_file, source_row, session_id, session_start FROM a ORDER BY source_file, source_row"
     ).to_arrow_table()
-    carry_out = con.execute(
+    end_us = int(day_end.timestamp()) * 1_000_000
+    carry_out = con.sql(
         f"""SELECT user_id, arg_max(session_id, session_start) AS session_id,
                    max(session_start) AS session_start, max(event_time) AS last_event_time
             FROM a GROUP BY user_id
-            HAVING epoch_us(max(event_time)) >= epoch_us($end) - {gap_s} * 1000000
-            ORDER BY user_id""",
-        {"end": day_end},
+            HAVING epoch_us(max(event_time)) >= {end_us} - {gap_s} * 1000000
+            ORDER BY user_id"""
     ).to_arrow_table()
     return assignments, carry_out
