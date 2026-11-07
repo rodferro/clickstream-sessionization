@@ -1,0 +1,32 @@
+{
+ "engines": [
+  "duckdb",
+  "polars",
+  "python"
+ ],
+ "gap_seconds": 1800,
+ "days": [
+  {
+   "day": "2019-11-16",
+   "rows": 6488924,
+   "mismatch_polars": 0,
+   "mismatch_python": 0
+  }
+ ],
+ "rows_compared": 6488924,
+ "sessions_started": 757013,
+ "mismatched_rows": {
+  "polars": 0,
+  "python": 0
+ },
+ "mismatched_carry_rows": {
+  "polars": 0,
+  "python": 0
+ },
+ "seconds": {
+  "duckdb": 2.52,
+  "polars": 3.37,
+  "python": 37.05
+ },
+ "agree": true
+}

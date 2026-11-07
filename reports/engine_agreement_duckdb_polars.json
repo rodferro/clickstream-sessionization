@@ -1,0 +1,327 @@
+{
+ "engines": [
+  "duckdb",
+  "polars"
+ ],
+ "gap_seconds": 1800,
+ "days": [
+  {
+   "day": "2019-10-01",
+   "rows": 1243715,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-02",
+   "rows": 1190853,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-03",
+   "rows": 1126624,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-04",
+   "rows": 1415939,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-05",
+   "rows": 1329334,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-06",
+   "rows": 1317164,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-07",
+   "rows": 1199974,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-08",
+   "rows": 1370077,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-09",
+   "rows": 1346934,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-10",
+   "rows": 1283355,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-11",
+   "rows": 1494572,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-12",
+   "rows": 1479143,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-13",
+   "rows": 1638290,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-14",
+   "rows": 1453355,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-15",
+   "rows": 1540670,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-16",
+   "rows": 1520985,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-17",
+   "rows": 1405852,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-18",
+   "rows": 1480459,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-19",
+   "rows": 1448038,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-20",
+   "rows": 1508757,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-21",
+   "rows": 1404141,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-22",
+   "rows": 1415885,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-23",
+   "rows": 1380024,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-24",
+   "rows": 1315309,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-25",
+   "rows": 1433865,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-26",
+   "rows": 1346157,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-27",
+   "rows": 1387400,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-28",
+   "rows": 1260192,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-29",
+   "rows": 1227001,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-30",
+   "rows": 1209557,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-10-31",
+   "rows": 1244923,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-01",
+   "rows": 1444754,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-02",
+   "rows": 1554934,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-03",
+   "rows": 1567040,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-04",
+   "rows": 1792508,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-05",
+   "rows": 1716759,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-06",
+   "rows": 1694224,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-07",
+   "rows": 1796237,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-08",
+   "rows": 1893950,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-09",
+   "rows": 1875586,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-10",
+   "rows": 1938354,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-11",
+   "rows": 2006897,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-12",
+   "rows": 1985382,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-13",
+   "rows": 2016711,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-14",
+   "rows": 3064736,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-15",
+   "rows": 6205340,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-16",
+   "rows": 6488924,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-17",
+   "rows": 6379921,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-18",
+   "rows": 2018957,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-19",
+   "rows": 1726197,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-20",
+   "rows": 1697436,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-21",
+   "rows": 1674077,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-22",
+   "rows": 1565866,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-23",
+   "rows": 1559515,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-24",
+   "rows": 1589431,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-25",
+   "rows": 1591037,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-26",
+   "rows": 1652842,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-27",
+   "rows": 1644217,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-28",
+   "rows": 1656197,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-29",
+   "rows": 1850824,
+   "mismatch_polars": 0
+  },
+  {
+   "day": "2019-11-30",
+   "rows": 1752607,
+   "mismatch_polars": 0
+  }
+ ],
+ "rows_compared": 109820004,
+ "sessions_started": 18756054,
+ "mismatched_rows": {
+  "polars": 0
+ },
+ "mismatched_carry_rows": {
+  "polars": 0
+ },
+ "seconds": {
+  "duckdb": 44.68,
+  "polars": 79.72
+ },
+ "agree": true
+}

@@ -1,0 +1,88 @@
+# Profile of 2019-Oct.csv (bronze, before cleaning)
+
+## rows, range (UTC), cardinalities
+      rows                   min_t                   max_t      users  user_sessions  products  categories  brands
+42,448,764  2019-10-01 00:00:00+00  2019-10-31 23:59:59+00  3,022,290      9,244,421   166,794         624   3,445
+(7.2s)
+
+## event types
+event_type           n    pct
+      view  40,779,399  96.07
+      cart     926,516   2.18
+  purchase     742,849   1.75
+(0.2s)
+
+## nulls per column
+category_code      brand  user_session  price  any_key
+   13,515,609  6,113,008             2      0        0
+(2.3s)
+
+## exact duplicate rows (all 9 source columns), extra copies by event type
+event_type  extra_rows  groups  max_copies
+      cart      28,073  15,994          41
+      view       2,071   2,029           4
+  purchase          76      76           2
+(22.3s)
+
+## out-of-order rows in file order (event_time earlier than the previous row / user's previous row)
+global_out_of_order  per_user_out_of_order
+                  0                      0
+(7.5s)
+
+## same user, same second
+groups    rows
+31,517  76,054
+(2.1s)
+
+## events per user
+          p50_p90_p99    max  single_event_users
+[4.00, 34.00, 141.00]  7,436             691,246
+(0.9s)
+
+## user_session ids shared by more than one user
+ids
+348
+(3.1s)
+
+## price
+ min             p50_p99       max    zero  negative
+0.00  [162.93, 1,741.34]  2,574.07  68,673         0
+(2.2s)
+
+## gaps between a user's consecutive events (cumulative share)
+      gaps  pct_lt_1m  pct_lt_5m  pct_le_30m  pct_le_60m  pct_ge_1d
+39,426,474      60.56      84.00       87.89       88.58       6.84
+(0.3s)
+
+## gaps from 5 to 120 min, 5-minute bins
+bin_start_min     gaps
+            5  913,250
+           10  286,092
+           15  152,774
+           20  103,884
+           25   78,959
+           30   62,951
+           35   52,835
+           40   45,844
+           45   40,491
+           50   36,555
+           55   33,089
+           60   30,582
+           65   28,434
+           70   26,601
+           75   24,982
+           80   23,847
+           85   22,588
+           90   21,771
+           95   20,789
+          100   19,890
+          105   18,969
+          110   18,243
+          115   17,765
+          120   17,015
+(0.1s)
+
+## user_session id changes vs gap
+changes_after_lt_1m  changes_same_second  kept_after_gt_1h  kept_after_gt_1d
+            371,562                6,342           107,508            18,569
+(0.3s)
