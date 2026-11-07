@@ -100,7 +100,8 @@ Why 30 minutes:
   | 60 | 7,524,798 | 81.605% | 10,463,167 | 79.344% |
   | 120 | 7,250,379 | 80.810% | 9,967,015 | 78.360% |
 
-  30 and 60 minutes differ by about 0.1 point (0.103 in October, 0.091 in November), and 45 minutes
+  30 and 60 minutes differ by about 0.1 point (81.708% vs 81.605% in October, 79.435% vs 79.344%
+  in November), and 45 minutes
   is marginally higher than 30 in both months. So the data supports anything from roughly 20 to 60
   minutes; 30 was picked by convention, not because the data prefers it. The full table and chart
   are in [`analysis.md`](reports/analysis.md#sensitivity-to-the-inactivity-threshold-n) (computed on
@@ -238,8 +239,8 @@ Most differences are merges: the store often starts a new id after a short pause
 371,562 id changes came after less than a minute), which a 30-minute rule keeps together. Splits go
 the other way: the store keeps an id across long inactivity (18,569 times across more than a day in
 October). Ids shared between users can never match a per-user session. Counts are over each month's
-event partitions, so November includes sessions continuing from Oct 31 (125 more than in the
-Results table).
+event partitions, so November includes sessions continuing from Oct 31 (slightly more than in
+the Results table).
 
 ## How to run
 
