@@ -37,7 +37,7 @@ from clickstream.io import (
 from clickstream.quality import DQReport
 from clickstream.state import Manifest
 
-GOLD_VERSION = "gold-v2"
+GOLD_VERSION = "gold-v3"
 PARTITIONED = ("sessions", "session_items", "daily_metrics", "conversion_daily")
 MARTS = ("conversion_by_category", "conversion_by_brand", "duration_by_segment")
 
@@ -169,7 +169,7 @@ def build_date(
     con.execute(
         f"""CREATE TEMP TABLE m AS
         SELECT DATE '{key}' AS session_date, p.population,
-          count(*) AS sessions, count(DISTINCT user_id) AS users, sum(n_events) AS events,
+          count(*) AS sessions, count(DISTINCT user_id) AS users, sum(n_events)::BIGINT AS events,
           quantile_cont(duration_s, 0.5) AS median_duration_s, quantile_cont(duration_s, 0.9) AS p90_duration_s,
           avg(n_events) AS mean_events_per_session,
           avg((n_events = 1)::INT) AS single_event_share,
@@ -272,8 +272,10 @@ def build_marts(paths: Paths, manifest: Manifest, force: bool = False, log=print
 
     def conversion(dim: str, having: str = "") -> str:
         return f"""
-        SELECT dim_value AS {dim}, sum(sessions) AS sessions, sum(sessions_carted) AS sessions_carted,
-          sum(sessions_purchased) AS sessions_purchased,
+        -- sum() of BIGINT is HUGEINT, which Parquet would store as DOUBLE: cast back
+        SELECT dim_value AS {dim}, sum(sessions)::BIGINT AS sessions,
+          sum(sessions_carted)::BIGINT AS sessions_carted,
+          sum(sessions_purchased)::BIGINT AS sessions_purchased,
           sum(sessions_carted) / sum(sessions) AS cart_rate,
           sum(sessions_purchased) / sum(sessions) AS purchase_rate,
           sum(revenue) AS revenue
