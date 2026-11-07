@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clickstream"
+version = "0.1.0"
+description = "Reproducible batch pipeline: raw e-commerce clickstream -> bronze/silver/gold sessions and session analytics"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "duckdb==2.0.0",
+    "polars==2.1.0",
+    "pyarrow==26.0.1",
+    "matplotlib==3.11.2",
+]
+
+[project.optional-dependencies]
+# Only needed to download the real dataset; tests and CI don't use it.
+download = ["kaggle==2.2.5", "six==1.17.0"]
+dev = ["pytest==9.2.0", "ruff==0.17.4"]
+
+[project.scripts]
+clickstream = "clickstream.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+# Long SQL strings are clearer unwrapped; code layout is enforced by `ruff format`.
+ignore = ["E501"]
