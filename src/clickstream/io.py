@@ -13,7 +13,7 @@ from pathlib import Path
 
 import duckdb
 
-from clickstream.config import DUCKDB_MEMORY_LIMIT
+from clickstream.config import DUCKDB_MEMORY_LIMIT, DUCKDB_TEMP_DIR
 
 
 def connect(threads: int | None = None) -> duckdb.DuckDBPyConnection:
@@ -22,6 +22,8 @@ def connect(threads: int | None = None) -> duckdb.DuckDBPyConnection:
     con.execute("SET TimeZone='UTC'")
     con.execute(f"SET memory_limit='{DUCKDB_MEMORY_LIMIT}'")
     con.execute("SET preserve_insertion_order=true")
+    # Let large aggregations spill to disk instead of failing at the memory limit.
+    con.execute(f"SET temp_directory='{DUCKDB_TEMP_DIR}'")
     if threads:
         con.execute(f"SET threads={threads}")
     return con

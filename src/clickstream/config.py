@@ -6,6 +6,7 @@ Everything that changes results lives here, so README numbers can be traced to o
 from __future__ import annotations
 
 import os
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -55,6 +56,10 @@ WARN_DAILY_VOLUME_DEVIATION = 0.5  # vs trailing median of up to 7 previous days
 
 # --- Engine resources ----------------------------------------------------------------------
 DUCKDB_MEMORY_LIMIT = os.environ.get("CLICKSTREAM_DUCKDB_MEMORY", "2GB")
+# Spill directory for DuckDB operators that exceed the memory limit.
+DUCKDB_TEMP_DIR = os.environ.get(
+    "CLICKSTREAM_DUCKDB_TMP", os.path.join(tempfile.gettempdir(), "clickstream-duckdb")
+)
 
 
 @dataclass(frozen=True)

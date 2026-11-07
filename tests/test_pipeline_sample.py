@@ -107,6 +107,7 @@ def test_three_engines_agree_on_sample(built):
 
 def test_rerun_without_changes_is_a_noop(built):
     before = tree_hash(built.root, *OUTPUTS)
+    assert bronze.ingest(SAMPLE, built, log=quiet) == []
     assert silver.build(built, log=quiet) == []
     assert sessions.build(built, log=quiet) == []
     assert gold.build(built, log=quiet) == []

@@ -13,8 +13,11 @@ from pathlib import Path
 import polars as pl
 
 from clickstream.config import EVENT_TIME_FORMAT, Paths
-from clickstream.io import connect, day_bounds, partition_dir, sql_str
+from clickstream.io import connect, day_bounds, fingerprint_values, partition_dir, sql_str
 from clickstream.quality import DQReport
+from clickstream.state import Manifest
+
+INGEST_VERSION = "bronze-v1"
 
 CSV_SCHEMA = {
     "event_time": pl.String,
@@ -42,10 +45,33 @@ def count_data_rows(csv: Path) -> int:
     return n - 1  # header
 
 
-def ingest(csv: Path, paths: Paths, log=print) -> list[date]:
-    """Ingest one raw CSV into bronze. Returns the event dates it wrote."""
+def _source_signature(csv: Path) -> str:
+    st = csv.stat()
+    return fingerprint_values(csv.name, st.st_size, st.st_mtime_ns, INGEST_VERSION)
+
+
+def _outputs_signature(paths: Paths, stem: str) -> str | None:
+    files = sorted(paths.bronze.glob(f"event_date=*/{stem}.parquet"))
+    if not files:
+        return None
+    return fingerprint_values(
+        [(str(f.relative_to(paths.bronze)), f.stat().st_size, f.stat().st_mtime_ns) for f in files]
+    )
+
+
+def ingest(csv: Path, paths: Paths, force: bool = False, log=print) -> list[date]:
+    """Ingest one raw CSV into bronze. Returns the event dates it wrote ([] if already current).
+
+    Skipped when the CSV (name, size, mtime) and the bronze files from the last ingest of it are
+    unchanged, so adding a month doesn't re-ingest the previous ones.
+    """
     source = csv.name
     stem = csv.stem
+    manifest = Manifest(paths.manifest)
+    in_sig = _source_signature(csv)
+    if not force and manifest.is_current("bronze", stem, in_sig, _outputs_signature(paths, stem)):
+        log(f"bronze: {source} up to date")
+        return []
     staging = paths.root / "bronze" / "_staging" / f"{stem}.parquet"
     staging.parent.mkdir(parents=True, exist_ok=True)
 
@@ -103,5 +129,6 @@ def ingest(csv: Path, paths: Paths, log=print) -> list[date]:
     report.metric("days", [d.isoformat() for d in days])
     report.finish(paths.dq, log)
     staging.unlink()
+    manifest.record("bronze", stem, in_sig, _outputs_signature(paths, stem), rows=written)
     log(f"bronze: {written:,} rows across {len(days)} days from {source}")
     return days

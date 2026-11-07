@@ -4,6 +4,9 @@ Partitioned by session_date (UTC date of the session's first event):
   sessions        one row per session
   session_items   one row per (session, top-level category, brand) with view/cart/purchase flags
   daily_metrics   two rows per date: population 'all' and 'non_bot'
+  conversion_daily  non-bot sessions / carted / purchased / revenue per top-level category and
+                  per brand. Additive across dates (a session lives in exactly one date), so the
+                  conversion marts are sums over it rather than a scan of every session item.
 
 Global marts (recomputed when any partition changes, from gold only, excluding suspect bots):
   conversion_by_category, conversion_by_brand, duration_by_segment
@@ -34,8 +37,8 @@ from clickstream.io import (
 from clickstream.quality import DQReport
 from clickstream.state import Manifest
 
-GOLD_VERSION = "gold-v1"
-PARTITIONED = ("sessions", "session_items", "daily_metrics")
+GOLD_VERSION = "gold-v2"
+PARTITIONED = ("sessions", "session_items", "daily_metrics", "conversion_daily")
 MARTS = ("conversion_by_category", "conversion_by_brand", "duration_by_segment")
 
 
@@ -181,6 +184,22 @@ def build_date(
         GROUP BY ALL ORDER BY population"""
     )
 
+    con.execute(
+        f"""CREATE TEMP TABLE cd AS
+        WITH sc AS (
+          SELECT session_id, 'category_top' AS dim_type, category_top AS dim_value,
+                 bool_or(carted) AS c, bool_or(purchased) AS p, sum(revenue) AS r
+          FROM i WHERE NOT suspect_bot GROUP BY 1, 2, 3
+          UNION ALL
+          SELECT session_id, 'brand', brand, bool_or(carted), bool_or(purchased), sum(revenue)
+          FROM i WHERE NOT suspect_bot GROUP BY 1, 2, 3
+        )
+        SELECT DATE '{key}' AS session_date, dim_type, dim_value, count(*) AS sessions,
+               count(*) FILTER (c) AS sessions_carted, count(*) FILTER (p) AS sessions_purchased,
+               sum(r) AS revenue
+        FROM sc GROUP BY ALL ORDER BY dim_type, dim_value"""
+    )
+
     def q(sql: str):
         return con.execute(sql).fetchone()[0]
 
@@ -206,7 +225,12 @@ def build_date(
     report.metric("max_event_days_per_session", q("SELECT max(n_event_days) FROM s"))
 
     outs = [partition_dir(paths.gold_table(t), session_date, "session_date") for t in PARTITIONED]
-    with atomic_dir(outs[0]) as t_s, atomic_dir(outs[1]) as t_i, atomic_dir(outs[2]) as t_m:
+    with (
+        atomic_dir(outs[0]) as t_s,
+        atomic_dir(outs[1]) as t_i,
+        atomic_dir(outs[2]) as t_m,
+        atomic_dir(outs[3]) as t_cd,
+    ):
         con.execute(
             f"COPY (SELECT * EXCLUDE (first_event_time) FROM s ORDER BY user_id, session_start) TO {sql_str(t_s / 'part-0.parquet')} (FORMAT parquet, COMPRESSION zstd)"
         )
@@ -215,6 +239,9 @@ def build_date(
         )
         con.execute(
             f"COPY (SELECT * FROM m) TO {sql_str(t_m / 'part-0.parquet')} (FORMAT parquet, COMPRESSION zstd)"
+        )
+        con.execute(
+            f"COPY (SELECT * FROM cd) TO {sql_str(t_cd / 'part-0.parquet')} (FORMAT parquet, COMPRESSION zstd)"
         )
         report.finish(paths.dq, log)
     manifest.record(
@@ -236,45 +263,55 @@ def build_marts(paths: Paths, manifest: Manifest, force: bool = False, log=print
         return False
     con = connect()
     sessions = sql_str(str(paths.gold_table("sessions") / "*" / "*.parquet"))
-    items = sql_str(str(paths.gold_table("session_items") / "*" / "*.parquet"))
+    conv = sql_str(str(paths.gold_table("conversion_daily") / "*" / "*.parquet"))
     con.execute(
-        f"CREATE VIEW s AS SELECT * FROM read_parquet({sessions}, hive_partitioning=false) WHERE NOT suspect_bot"
+        f"""CREATE VIEW s AS SELECT duration_s, n_events, entry_category_top, entry_brand, entry_price_band
+            FROM read_parquet({sessions}, hive_partitioning=false) WHERE NOT suspect_bot"""
     )
-    con.execute(
-        f"CREATE VIEW i AS SELECT * FROM read_parquet({items}, hive_partitioning=false) WHERE NOT suspect_bot"
-    )
+    con.execute(f"CREATE VIEW cd AS SELECT * FROM read_parquet({conv}, hive_partitioning=false)")
 
     def conversion(dim: str, having: str = "") -> str:
         return f"""
-        SELECT {dim}, count(DISTINCT session_id) AS sessions,
-          count(DISTINCT session_id) FILTER (carted) AS sessions_carted,
-          count(DISTINCT session_id) FILTER (purchased) AS sessions_purchased,
-          count(DISTINCT session_id) FILTER (carted) / count(DISTINCT session_id) AS cart_rate,
-          count(DISTINCT session_id) FILTER (purchased) / count(DISTINCT session_id) AS purchase_rate,
+        SELECT dim_value AS {dim}, sum(sessions) AS sessions, sum(sessions_carted) AS sessions_carted,
+          sum(sessions_purchased) AS sessions_purchased,
+          sum(sessions_carted) / sum(sessions) AS cart_rate,
+          sum(sessions_purchased) / sum(sessions) AS purchase_rate,
           sum(revenue) AS revenue
-        FROM i GROUP BY {dim} {having} ORDER BY sessions DESC, {dim}"""
+        FROM cd WHERE dim_type = '{dim}' GROUP BY dim_value {having} ORDER BY sessions DESC, {dim}"""
 
     def durations(segment_type: str, expr: str, having: str = "") -> str:
+        # Exact quantiles can't spill, so: one segment type per query, one list-valued
+        # quantile state per group, INTEGER durations.
         return f"""
-        SELECT '{segment_type}' AS segment_type, coalesce({expr}::VARCHAR, 'unknown') AS segment, count(*) AS sessions,
-          quantile_cont(duration_s, 0.5) AS median_duration_s, quantile_cont(duration_s, 0.9) AS p90_duration_s,
-          quantile_cont(duration_s, 0.5) FILTER (n_events > 1) AS median_duration_s_multi_event,
-          quantile_cont(duration_s, 0.9) FILTER (n_events > 1) AS p90_duration_s_multi_event,
+        SELECT '{segment_type}' AS segment_type, coalesce({expr}::VARCHAR, 'unknown') AS segment,
+          count(*) AS sessions,
+          quantile_cont(duration_s::INTEGER, [0.5, 0.9]) AS q_all,
+          quantile_cont(duration_s::INTEGER, [0.5, 0.9]) FILTER (n_events > 1) AS q_multi,
           avg((n_events = 1)::INT) AS single_event_share
         FROM s GROUP BY 2 {having}"""
 
     min_b = config.MIN_SESSIONS_PER_BRAND
+    segments = [
+        ("category_top", "entry_category_top", ""),
+        ("brand", "entry_brand", f"HAVING count(*) >= {min_b}"),
+        ("price_band", "entry_price_band", ""),
+    ]
+    con.execute("SET threads=2")  # fewer concurrent quantile states
+    con.execute(
+        """CREATE TEMP TABLE dur (segment_type VARCHAR, segment VARCHAR, sessions BIGINT,
+           q_all DOUBLE[], q_multi DOUBLE[], single_event_share DOUBLE)"""
+    )
+    for seg in segments:
+        con.execute(f"INSERT INTO dur {durations(*seg)}")
     queries = {
         "conversion_by_category": conversion("category_top"),
-        "conversion_by_brand": conversion("brand", f"HAVING count(DISTINCT session_id) >= {min_b}"),
-        "duration_by_segment": " UNION ALL ".join(
-            [
-                durations("category_top", "entry_category_top"),
-                durations("brand", "entry_brand", f"HAVING count(*) >= {min_b}"),
-                durations("price_band", "entry_price_band"),
-            ]
-        )
-        + " ORDER BY segment_type, sessions DESC, segment",
+        "conversion_by_brand": conversion("brand", f"HAVING sum(sessions) >= {min_b}"),
+        "duration_by_segment": """
+        SELECT segment_type, segment, sessions,
+          q_all[1] AS median_duration_s, q_all[2] AS p90_duration_s,
+          q_multi[1] AS median_duration_s_multi_event, q_multi[2] AS p90_duration_s_multi_event,
+          single_event_share
+        FROM dur ORDER BY segment_type, sessions DESC, segment""",
     }
     with atomic_dir(marts_dir) as tmp:
         for name, sql in queries.items():
