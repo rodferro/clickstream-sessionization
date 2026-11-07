@@ -74,6 +74,7 @@ def main(argv: list[str] | None = None) -> int:
     sp = sub.add_parser("build", help="build silver or gold")
     sp.add_argument("--layer", required=True, choices=["silver", "gold"])
     sp.add_argument("--force", action="store_true", help="rebuild even if inputs are unchanged")
+    sp.add_argument("--skip-marts", action="store_true", help="gold: don't recompute the global marts")
     rng(sp)
 
     sp = sub.add_parser("sessions", help="silver -> sessionized events (in date order)")
@@ -116,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
             available = list_partitions(paths.sessionized)
             days = _days(available, args.start, args.end)
             dates = gold.affected_dates(paths, days) if (args.start or args.end) else None
-            gold.build(paths, dates, force=args.force)
+            gold.build(paths, dates, force=args.force, marts=not args.skip_marts)
         elif args.cmd == "check":
             check.run_checks(paths)
         elif args.cmd == "compare-engines":

@@ -1,0 +1,2491 @@
+{
+ "machine": {
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "cpu": "Apple M5",
+  "cpus": 10,
+  "ram_gb": 16,
+  "python": "3.12.16",
+  "duckdb": "2.0.0",
+  "polars": "2.1.0",
+  "duckdb_memory_limit": "2GB"
+ },
+ "months": [
+  "2019-10",
+  "2019-11"
+ ],
+ "measurements": [
+  {
+   "scope": "default",
+   "stage": "run",
+   "seconds": 184.254,
+   "peak_rss_mb": 1849.0,
+   "month": "2019-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "ingest",
+   "seconds": 33.965,
+   "peak_rss_mb": 976.0,
+   "month": "2019-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.433,
+   "peak_rss_mb": 1528.3,
+   "month": "2019-10",
+   "day": "2019-10-01"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.536,
+   "peak_rss_mb": 1172.0,
+   "month": "2019-10",
+   "day": "2019-10-01"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 1.61,
+   "peak_rss_mb": 912.5,
+   "month": "2019-10",
+   "day": "2019-10-01"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.812,
+   "peak_rss_mb": 530.6,
+   "month": "2019-10",
+   "day": "2019-10-01"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.222,
+   "peak_rss_mb": 651.9,
+   "month": "2019-10",
+   "day": "2019-10-01"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.192,
+   "peak_rss_mb": 1335.5,
+   "month": "2019-10",
+   "day": "2019-10-02"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.776,
+   "peak_rss_mb": 1235.7,
+   "month": "2019-10",
+   "day": "2019-10-02"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.294,
+   "peak_rss_mb": 1125.6,
+   "month": "2019-10",
+   "day": "2019-10-02"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.84,
+   "peak_rss_mb": 539.3,
+   "month": "2019-10",
+   "day": "2019-10-02"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.613,
+   "peak_rss_mb": 672.1,
+   "month": "2019-10",
+   "day": "2019-10-02"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.472,
+   "peak_rss_mb": 1144.3,
+   "month": "2019-10",
+   "day": "2019-10-03"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.951,
+   "peak_rss_mb": 1139.1,
+   "month": "2019-10",
+   "day": "2019-10-03"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.757,
+   "peak_rss_mb": 904.8,
+   "month": "2019-10",
+   "day": "2019-10-03"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.921,
+   "peak_rss_mb": 546.7,
+   "month": "2019-10",
+   "day": "2019-10-03"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.302,
+   "peak_rss_mb": 532.0,
+   "month": "2019-10",
+   "day": "2019-10-03"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.452,
+   "peak_rss_mb": 1642.3,
+   "month": "2019-10",
+   "day": "2019-10-04"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.287,
+   "peak_rss_mb": 1183.0,
+   "month": "2019-10",
+   "day": "2019-10-04"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.584,
+   "peak_rss_mb": 1034.5,
+   "month": "2019-10",
+   "day": "2019-10-04"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.158,
+   "peak_rss_mb": 612.2,
+   "month": "2019-10",
+   "day": "2019-10-04"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.473,
+   "peak_rss_mb": 707.5,
+   "month": "2019-10",
+   "day": "2019-10-04"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.071,
+   "peak_rss_mb": 1284.2,
+   "month": "2019-10",
+   "day": "2019-10-05"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.158,
+   "peak_rss_mb": 1029.7,
+   "month": "2019-10",
+   "day": "2019-10-05"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.982,
+   "peak_rss_mb": 1015.2,
+   "month": "2019-10",
+   "day": "2019-10-05"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.914,
+   "peak_rss_mb": 568.1,
+   "month": "2019-10",
+   "day": "2019-10-05"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.333,
+   "peak_rss_mb": 758.1,
+   "month": "2019-10",
+   "day": "2019-10-05"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.476,
+   "peak_rss_mb": 1447.3,
+   "month": "2019-10",
+   "day": "2019-10-06"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.968,
+   "peak_rss_mb": 1256.4,
+   "month": "2019-10",
+   "day": "2019-10-06"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.689,
+   "peak_rss_mb": 1096.2,
+   "month": "2019-10",
+   "day": "2019-10-06"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.032,
+   "peak_rss_mb": 573.1,
+   "month": "2019-10",
+   "day": "2019-10-06"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.301,
+   "peak_rss_mb": 674.6,
+   "month": "2019-10",
+   "day": "2019-10-06"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 1.918,
+   "peak_rss_mb": 1237.5,
+   "month": "2019-10",
+   "day": "2019-10-07"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.787,
+   "peak_rss_mb": 1055.7,
+   "month": "2019-10",
+   "day": "2019-10-07"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.71,
+   "peak_rss_mb": 972.6,
+   "month": "2019-10",
+   "day": "2019-10-07"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.899,
+   "peak_rss_mb": 545.0,
+   "month": "2019-10",
+   "day": "2019-10-07"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.401,
+   "peak_rss_mb": 574.5,
+   "month": "2019-10",
+   "day": "2019-10-07"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.6,
+   "peak_rss_mb": 1547.1,
+   "month": "2019-10",
+   "day": "2019-10-08"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.399,
+   "peak_rss_mb": 1276.1,
+   "month": "2019-10",
+   "day": "2019-10-08"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.851,
+   "peak_rss_mb": 1083.2,
+   "month": "2019-10",
+   "day": "2019-10-08"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.157,
+   "peak_rss_mb": 595.8,
+   "month": "2019-10",
+   "day": "2019-10-08"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.465,
+   "peak_rss_mb": 675.6,
+   "month": "2019-10",
+   "day": "2019-10-08"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.534,
+   "peak_rss_mb": 1386.1,
+   "month": "2019-10",
+   "day": "2019-10-09"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.338,
+   "peak_rss_mb": 1187.3,
+   "month": "2019-10",
+   "day": "2019-10-09"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.46,
+   "peak_rss_mb": 1078.2,
+   "month": "2019-10",
+   "day": "2019-10-09"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.897,
+   "peak_rss_mb": 575.6,
+   "month": "2019-10",
+   "day": "2019-10-09"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.455,
+   "peak_rss_mb": 633.8,
+   "month": "2019-10",
+   "day": "2019-10-09"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.793,
+   "peak_rss_mb": 1487.0,
+   "month": "2019-10",
+   "day": "2019-10-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.995,
+   "peak_rss_mb": 1118.6,
+   "month": "2019-10",
+   "day": "2019-10-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.77,
+   "peak_rss_mb": 1060.8,
+   "month": "2019-10",
+   "day": "2019-10-10"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.998,
+   "peak_rss_mb": 585.8,
+   "month": "2019-10",
+   "day": "2019-10-10"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.436,
+   "peak_rss_mb": 574.9,
+   "month": "2019-10",
+   "day": "2019-10-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.009,
+   "peak_rss_mb": 1333.2,
+   "month": "2019-10",
+   "day": "2019-10-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.096,
+   "peak_rss_mb": 1436.4,
+   "month": "2019-10",
+   "day": "2019-10-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.893,
+   "peak_rss_mb": 1119.4,
+   "month": "2019-10",
+   "day": "2019-10-11"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.88,
+   "peak_rss_mb": 608.0,
+   "month": "2019-10",
+   "day": "2019-10-11"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.359,
+   "peak_rss_mb": 726.2,
+   "month": "2019-10",
+   "day": "2019-10-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.321,
+   "peak_rss_mb": 1537.8,
+   "month": "2019-10",
+   "day": "2019-10-12"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.88,
+   "peak_rss_mb": 1410.5,
+   "month": "2019-10",
+   "day": "2019-10-12"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.936,
+   "peak_rss_mb": 1088.0,
+   "month": "2019-10",
+   "day": "2019-10-12"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.022,
+   "peak_rss_mb": 604.3,
+   "month": "2019-10",
+   "day": "2019-10-12"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.31,
+   "peak_rss_mb": 696.1,
+   "month": "2019-10",
+   "day": "2019-10-12"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.275,
+   "peak_rss_mb": 1618.7,
+   "month": "2019-10",
+   "day": "2019-10-13"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.19,
+   "peak_rss_mb": 1427.3,
+   "month": "2019-10",
+   "day": "2019-10-13"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.852,
+   "peak_rss_mb": 1120.1,
+   "month": "2019-10",
+   "day": "2019-10-13"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.17,
+   "peak_rss_mb": 652.1,
+   "month": "2019-10",
+   "day": "2019-10-13"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.532,
+   "peak_rss_mb": 723.3,
+   "month": "2019-10",
+   "day": "2019-10-13"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.436,
+   "peak_rss_mb": 1413.7,
+   "month": "2019-10",
+   "day": "2019-10-14"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.009,
+   "peak_rss_mb": 1188.5,
+   "month": "2019-10",
+   "day": "2019-10-14"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.911,
+   "peak_rss_mb": 1076.0,
+   "month": "2019-10",
+   "day": "2019-10-14"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.184,
+   "peak_rss_mb": 626.8,
+   "month": "2019-10",
+   "day": "2019-10-14"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.857,
+   "peak_rss_mb": 683.1,
+   "month": "2019-10",
+   "day": "2019-10-14"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.539,
+   "peak_rss_mb": 1415.8,
+   "month": "2019-10",
+   "day": "2019-10-15"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.338,
+   "peak_rss_mb": 1329.1,
+   "month": "2019-10",
+   "day": "2019-10-15"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.242,
+   "peak_rss_mb": 1163.8,
+   "month": "2019-10",
+   "day": "2019-10-15"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.249,
+   "peak_rss_mb": 650.6,
+   "month": "2019-10",
+   "day": "2019-10-15"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.653,
+   "peak_rss_mb": 705.8,
+   "month": "2019-10",
+   "day": "2019-10-15"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.702,
+   "peak_rss_mb": 1359.5,
+   "month": "2019-10",
+   "day": "2019-10-16"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.385,
+   "peak_rss_mb": 1406.2,
+   "month": "2019-10",
+   "day": "2019-10-16"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.236,
+   "peak_rss_mb": 1097.3,
+   "month": "2019-10",
+   "day": "2019-10-16"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.18,
+   "peak_rss_mb": 642.9,
+   "month": "2019-10",
+   "day": "2019-10-16"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.653,
+   "peak_rss_mb": 766.5,
+   "month": "2019-10",
+   "day": "2019-10-16"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.324,
+   "peak_rss_mb": 1384.3,
+   "month": "2019-10",
+   "day": "2019-10-17"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.936,
+   "peak_rss_mb": 1357.8,
+   "month": "2019-10",
+   "day": "2019-10-17"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.405,
+   "peak_rss_mb": 1076.0,
+   "month": "2019-10",
+   "day": "2019-10-17"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.514,
+   "peak_rss_mb": 600.0,
+   "month": "2019-10",
+   "day": "2019-10-17"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.858,
+   "peak_rss_mb": 738.0,
+   "month": "2019-10",
+   "day": "2019-10-17"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.715,
+   "peak_rss_mb": 1691.4,
+   "month": "2019-10",
+   "day": "2019-10-18"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.937,
+   "peak_rss_mb": 943.0,
+   "month": "2019-10",
+   "day": "2019-10-18"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.653,
+   "peak_rss_mb": 1039.9,
+   "month": "2019-10",
+   "day": "2019-10-18"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.027,
+   "peak_rss_mb": 620.3,
+   "month": "2019-10",
+   "day": "2019-10-18"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.424,
+   "peak_rss_mb": 810.9,
+   "month": "2019-10",
+   "day": "2019-10-18"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.636,
+   "peak_rss_mb": 1715.0,
+   "month": "2019-10",
+   "day": "2019-10-19"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.202,
+   "peak_rss_mb": 1382.4,
+   "month": "2019-10",
+   "day": "2019-10-19"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.717,
+   "peak_rss_mb": 1136.3,
+   "month": "2019-10",
+   "day": "2019-10-19"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.12,
+   "peak_rss_mb": 621.5,
+   "month": "2019-10",
+   "day": "2019-10-19"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.473,
+   "peak_rss_mb": 737.7,
+   "month": "2019-10",
+   "day": "2019-10-19"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.541,
+   "peak_rss_mb": 1578.9,
+   "month": "2019-10",
+   "day": "2019-10-20"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.415,
+   "peak_rss_mb": 1106.6,
+   "month": "2019-10",
+   "day": "2019-10-20"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.243,
+   "peak_rss_mb": 1116.2,
+   "month": "2019-10",
+   "day": "2019-10-20"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.11,
+   "peak_rss_mb": 618.0,
+   "month": "2019-10",
+   "day": "2019-10-20"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.86,
+   "peak_rss_mb": 650.2,
+   "month": "2019-10",
+   "day": "2019-10-20"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.989,
+   "peak_rss_mb": 1279.9,
+   "month": "2019-10",
+   "day": "2019-10-21"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.38,
+   "peak_rss_mb": 1132.7,
+   "month": "2019-10",
+   "day": "2019-10-21"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.598,
+   "peak_rss_mb": 1121.1,
+   "month": "2019-10",
+   "day": "2019-10-21"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.061,
+   "peak_rss_mb": 611.3,
+   "month": "2019-10",
+   "day": "2019-10-21"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.342,
+   "peak_rss_mb": 728.8,
+   "month": "2019-10",
+   "day": "2019-10-21"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.347,
+   "peak_rss_mb": 1447.8,
+   "month": "2019-10",
+   "day": "2019-10-22"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.45,
+   "peak_rss_mb": 1203.4,
+   "month": "2019-10",
+   "day": "2019-10-22"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.148,
+   "peak_rss_mb": 1045.0,
+   "month": "2019-10",
+   "day": "2019-10-22"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.022,
+   "peak_rss_mb": 617.1,
+   "month": "2019-10",
+   "day": "2019-10-22"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.386,
+   "peak_rss_mb": 656.4,
+   "month": "2019-10",
+   "day": "2019-10-22"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.632,
+   "peak_rss_mb": 1503.9,
+   "month": "2019-10",
+   "day": "2019-10-23"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.238,
+   "peak_rss_mb": 1157.9,
+   "month": "2019-10",
+   "day": "2019-10-23"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.157,
+   "peak_rss_mb": 1057.2,
+   "month": "2019-10",
+   "day": "2019-10-23"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.328,
+   "peak_rss_mb": 589.3,
+   "month": "2019-10",
+   "day": "2019-10-23"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.775,
+   "peak_rss_mb": 731.6,
+   "month": "2019-10",
+   "day": "2019-10-23"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.965,
+   "peak_rss_mb": 1543.2,
+   "month": "2019-10",
+   "day": "2019-10-24"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.222,
+   "peak_rss_mb": 1266.0,
+   "month": "2019-10",
+   "day": "2019-10-24"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.795,
+   "peak_rss_mb": 1050.5,
+   "month": "2019-10",
+   "day": "2019-10-24"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.934,
+   "peak_rss_mb": 575.0,
+   "month": "2019-10",
+   "day": "2019-10-24"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.395,
+   "peak_rss_mb": 618.5,
+   "month": "2019-10",
+   "day": "2019-10-24"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.703,
+   "peak_rss_mb": 1239.9,
+   "month": "2019-10",
+   "day": "2019-10-25"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.334,
+   "peak_rss_mb": 1251.4,
+   "month": "2019-10",
+   "day": "2019-10-25"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.913,
+   "peak_rss_mb": 1051.8,
+   "month": "2019-10",
+   "day": "2019-10-25"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.107,
+   "peak_rss_mb": 624.0,
+   "month": "2019-10",
+   "day": "2019-10-25"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.411,
+   "peak_rss_mb": 689.9,
+   "month": "2019-10",
+   "day": "2019-10-25"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.618,
+   "peak_rss_mb": 1383.0,
+   "month": "2019-10",
+   "day": "2019-10-26"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.972,
+   "peak_rss_mb": 1272.1,
+   "month": "2019-10",
+   "day": "2019-10-26"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.932,
+   "peak_rss_mb": 1114.5,
+   "month": "2019-10",
+   "day": "2019-10-26"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.111,
+   "peak_rss_mb": 582.7,
+   "month": "2019-10",
+   "day": "2019-10-26"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.481,
+   "peak_rss_mb": 700.3,
+   "month": "2019-10",
+   "day": "2019-10-26"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.492,
+   "peak_rss_mb": 1523.3,
+   "month": "2019-10",
+   "day": "2019-10-27"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.269,
+   "peak_rss_mb": 1242.5,
+   "month": "2019-10",
+   "day": "2019-10-27"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.966,
+   "peak_rss_mb": 1045.9,
+   "month": "2019-10",
+   "day": "2019-10-27"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.057,
+   "peak_rss_mb": 616.4,
+   "month": "2019-10",
+   "day": "2019-10-27"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.353,
+   "peak_rss_mb": 676.3,
+   "month": "2019-10",
+   "day": "2019-10-27"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.152,
+   "peak_rss_mb": 1288.8,
+   "month": "2019-10",
+   "day": "2019-10-28"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.748,
+   "peak_rss_mb": 1252.2,
+   "month": "2019-10",
+   "day": "2019-10-28"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.758,
+   "peak_rss_mb": 1014.9,
+   "month": "2019-10",
+   "day": "2019-10-28"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.008,
+   "peak_rss_mb": 562.0,
+   "month": "2019-10",
+   "day": "2019-10-28"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.192,
+   "peak_rss_mb": 728.7,
+   "month": "2019-10",
+   "day": "2019-10-28"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.3,
+   "peak_rss_mb": 1329.9,
+   "month": "2019-10",
+   "day": "2019-10-29"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.569,
+   "peak_rss_mb": 1172.9,
+   "month": "2019-10",
+   "day": "2019-10-29"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.792,
+   "peak_rss_mb": 997.8,
+   "month": "2019-10",
+   "day": "2019-10-29"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 0.896,
+   "peak_rss_mb": 563.0,
+   "month": "2019-10",
+   "day": "2019-10-29"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.345,
+   "peak_rss_mb": 580.7,
+   "month": "2019-10",
+   "day": "2019-10-29"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 1.984,
+   "peak_rss_mb": 1341.9,
+   "month": "2019-10",
+   "day": "2019-10-30"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 1.753,
+   "peak_rss_mb": 1080.6,
+   "month": "2019-10",
+   "day": "2019-10-30"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.445,
+   "peak_rss_mb": 985.3,
+   "month": "2019-10",
+   "day": "2019-10-30"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.249,
+   "peak_rss_mb": 570.3,
+   "month": "2019-10",
+   "day": "2019-10-30"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.471,
+   "peak_rss_mb": 623.2,
+   "month": "2019-10",
+   "day": "2019-10-30"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.888,
+   "peak_rss_mb": 1326.6,
+   "month": "2019-10",
+   "day": "2019-10-31"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.141,
+   "peak_rss_mb": 1099.5,
+   "month": "2019-10",
+   "day": "2019-10-31"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 2.646,
+   "peak_rss_mb": 1073.1,
+   "month": "2019-10",
+   "day": "2019-10-31"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.014,
+   "peak_rss_mb": 552.2,
+   "month": "2019-10",
+   "day": "2019-10-31"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.374,
+   "peak_rss_mb": 602.2,
+   "month": "2019-10",
+   "day": "2019-10-31"
+  },
+  {
+   "scope": "daily",
+   "stage": "ingest",
+   "seconds": 71.203,
+   "peak_rss_mb": 2095.9,
+   "month": "2019-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.289,
+   "peak_rss_mb": 1632.6,
+   "month": "2019-11",
+   "day": "2019-11-01"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.198,
+   "peak_rss_mb": 1202.1,
+   "month": "2019-11",
+   "day": "2019-11-01"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.331,
+   "peak_rss_mb": 1032.6,
+   "month": "2019-11",
+   "day": "2019-11-01"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.193,
+   "peak_rss_mb": 644.4,
+   "month": "2019-11",
+   "day": "2019-11-01"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.516,
+   "peak_rss_mb": 807.5,
+   "month": "2019-11",
+   "day": "2019-11-01"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.901,
+   "peak_rss_mb": 1589.0,
+   "month": "2019-11",
+   "day": "2019-11-02"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.533,
+   "peak_rss_mb": 1482.8,
+   "month": "2019-11",
+   "day": "2019-11-02"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.307,
+   "peak_rss_mb": 1089.1,
+   "month": "2019-11",
+   "day": "2019-11-02"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.929,
+   "peak_rss_mb": 599.5,
+   "month": "2019-11",
+   "day": "2019-11-02"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.131,
+   "peak_rss_mb": 801.9,
+   "month": "2019-11",
+   "day": "2019-11-02"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.786,
+   "peak_rss_mb": 1736.3,
+   "month": "2019-11",
+   "day": "2019-11-03"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.821,
+   "peak_rss_mb": 1168.3,
+   "month": "2019-11",
+   "day": "2019-11-03"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.495,
+   "peak_rss_mb": 1199.1,
+   "month": "2019-11",
+   "day": "2019-11-03"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.036,
+   "peak_rss_mb": 643.3,
+   "month": "2019-11",
+   "day": "2019-11-03"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.618,
+   "peak_rss_mb": 799.2,
+   "month": "2019-11",
+   "day": "2019-11-03"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.916,
+   "peak_rss_mb": 1430.5,
+   "month": "2019-11",
+   "day": "2019-11-04"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.96,
+   "peak_rss_mb": 1545.9,
+   "month": "2019-11",
+   "day": "2019-11-04"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.108,
+   "peak_rss_mb": 1162.4,
+   "month": "2019-11",
+   "day": "2019-11-04"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.735,
+   "peak_rss_mb": 679.4,
+   "month": "2019-11",
+   "day": "2019-11-04"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.43,
+   "peak_rss_mb": 866.5,
+   "month": "2019-11",
+   "day": "2019-11-04"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.762,
+   "peak_rss_mb": 1405.9,
+   "month": "2019-11",
+   "day": "2019-11-05"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.497,
+   "peak_rss_mb": 1121.8,
+   "month": "2019-11",
+   "day": "2019-11-05"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 5.167,
+   "peak_rss_mb": 1225.4,
+   "month": "2019-11",
+   "day": "2019-11-05"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.845,
+   "peak_rss_mb": 689.4,
+   "month": "2019-11",
+   "day": "2019-11-05"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.2,
+   "peak_rss_mb": 639.1,
+   "month": "2019-11",
+   "day": "2019-11-05"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.894,
+   "peak_rss_mb": 1661.6,
+   "month": "2019-11",
+   "day": "2019-11-06"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.265,
+   "peak_rss_mb": 1152.7,
+   "month": "2019-11",
+   "day": "2019-11-06"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.168,
+   "peak_rss_mb": 1183.3,
+   "month": "2019-11",
+   "day": "2019-11-06"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.359,
+   "peak_rss_mb": 732.7,
+   "month": "2019-11",
+   "day": "2019-11-06"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.101,
+   "peak_rss_mb": 780.7,
+   "month": "2019-11",
+   "day": "2019-11-06"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.49,
+   "peak_rss_mb": 1703.5,
+   "month": "2019-11",
+   "day": "2019-11-07"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.702,
+   "peak_rss_mb": 1452.7,
+   "month": "2019-11",
+   "day": "2019-11-07"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.822,
+   "peak_rss_mb": 1232.5,
+   "month": "2019-11",
+   "day": "2019-11-07"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.224,
+   "peak_rss_mb": 630.2,
+   "month": "2019-11",
+   "day": "2019-11-07"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.727,
+   "peak_rss_mb": 803.9,
+   "month": "2019-11",
+   "day": "2019-11-07"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.111,
+   "peak_rss_mb": 1569.6,
+   "month": "2019-11",
+   "day": "2019-11-08"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.446,
+   "peak_rss_mb": 1377.1,
+   "month": "2019-11",
+   "day": "2019-11-08"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.367,
+   "peak_rss_mb": 1245.6,
+   "month": "2019-11",
+   "day": "2019-11-08"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.048,
+   "peak_rss_mb": 827.1,
+   "month": "2019-11",
+   "day": "2019-11-08"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.606,
+   "peak_rss_mb": 789.8,
+   "month": "2019-11",
+   "day": "2019-11-08"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 2.955,
+   "peak_rss_mb": 1851.8,
+   "month": "2019-11",
+   "day": "2019-11-09"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.491,
+   "peak_rss_mb": 1228.6,
+   "month": "2019-11",
+   "day": "2019-11-09"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.677,
+   "peak_rss_mb": 1195.2,
+   "month": "2019-11",
+   "day": "2019-11-09"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.071,
+   "peak_rss_mb": 719.2,
+   "month": "2019-11",
+   "day": "2019-11-09"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.593,
+   "peak_rss_mb": 974.3,
+   "month": "2019-11",
+   "day": "2019-11-09"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.064,
+   "peak_rss_mb": 1678.2,
+   "month": "2019-11",
+   "day": "2019-11-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.481,
+   "peak_rss_mb": 1505.2,
+   "month": "2019-11",
+   "day": "2019-11-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.53,
+   "peak_rss_mb": 1187.3,
+   "month": "2019-11",
+   "day": "2019-11-10"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.129,
+   "peak_rss_mb": 719.9,
+   "month": "2019-11",
+   "day": "2019-11-10"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.649,
+   "peak_rss_mb": 817.6,
+   "month": "2019-11",
+   "day": "2019-11-10"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.384,
+   "peak_rss_mb": 1980.6,
+   "month": "2019-11",
+   "day": "2019-11-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.726,
+   "peak_rss_mb": 1665.5,
+   "month": "2019-11",
+   "day": "2019-11-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.013,
+   "peak_rss_mb": 1132.6,
+   "month": "2019-11",
+   "day": "2019-11-11"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.178,
+   "peak_rss_mb": 792.0,
+   "month": "2019-11",
+   "day": "2019-11-11"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.944,
+   "peak_rss_mb": 818.8,
+   "month": "2019-11",
+   "day": "2019-11-11"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.927,
+   "peak_rss_mb": 1614.8,
+   "month": "2019-11",
+   "day": "2019-11-12"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.824,
+   "peak_rss_mb": 1456.6,
+   "month": "2019-11",
+   "day": "2019-11-12"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.763,
+   "peak_rss_mb": 1275.0,
+   "month": "2019-11",
+   "day": "2019-11-12"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.132,
+   "peak_rss_mb": 755.6,
+   "month": "2019-11",
+   "day": "2019-11-12"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.691,
+   "peak_rss_mb": 872.4,
+   "month": "2019-11",
+   "day": "2019-11-12"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.544,
+   "peak_rss_mb": 1602.5,
+   "month": "2019-11",
+   "day": "2019-11-13"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.221,
+   "peak_rss_mb": 1589.8,
+   "month": "2019-11",
+   "day": "2019-11-13"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 5.222,
+   "peak_rss_mb": 981.9,
+   "month": "2019-11",
+   "day": "2019-11-13"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.332,
+   "peak_rss_mb": 719.0,
+   "month": "2019-11",
+   "day": "2019-11-13"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.735,
+   "peak_rss_mb": 896.6,
+   "month": "2019-11",
+   "day": "2019-11-13"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 6.791,
+   "peak_rss_mb": 1465.1,
+   "month": "2019-11",
+   "day": "2019-11-14"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 5.432,
+   "peak_rss_mb": 2136.9,
+   "month": "2019-11",
+   "day": "2019-11-14"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 7.238,
+   "peak_rss_mb": 1304.2,
+   "month": "2019-11",
+   "day": "2019-11-14"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 2.578,
+   "peak_rss_mb": 846.8,
+   "month": "2019-11",
+   "day": "2019-11-14"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 3.187,
+   "peak_rss_mb": 975.8,
+   "month": "2019-11",
+   "day": "2019-11-14"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 21.168,
+   "peak_rss_mb": 1381.1,
+   "month": "2019-11",
+   "day": "2019-11-15"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 12.967,
+   "peak_rss_mb": 2076.4,
+   "month": "2019-11",
+   "day": "2019-11-15"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 8.914,
+   "peak_rss_mb": 1659.1,
+   "month": "2019-11",
+   "day": "2019-11-15"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 4.86,
+   "peak_rss_mb": 1248.3,
+   "month": "2019-11",
+   "day": "2019-11-15"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 11.048,
+   "peak_rss_mb": 1074.4,
+   "month": "2019-11",
+   "day": "2019-11-15"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 30.968,
+   "peak_rss_mb": 1384.2,
+   "month": "2019-11",
+   "day": "2019-11-16"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 21.528,
+   "peak_rss_mb": 1784.4,
+   "month": "2019-11",
+   "day": "2019-11-16"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 19.399,
+   "peak_rss_mb": 1713.6,
+   "month": "2019-11",
+   "day": "2019-11-16"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 8.12,
+   "peak_rss_mb": 1283.0,
+   "month": "2019-11",
+   "day": "2019-11-16"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 14.563,
+   "peak_rss_mb": 1110.7,
+   "month": "2019-11",
+   "day": "2019-11-16"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 25.145,
+   "peak_rss_mb": 1479.1,
+   "month": "2019-11",
+   "day": "2019-11-17"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 15.491,
+   "peak_rss_mb": 2167.6,
+   "month": "2019-11",
+   "day": "2019-11-17"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 14.949,
+   "peak_rss_mb": 1804.7,
+   "month": "2019-11",
+   "day": "2019-11-17"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 4.801,
+   "peak_rss_mb": 1668.0,
+   "month": "2019-11",
+   "day": "2019-11-17"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 6.722,
+   "peak_rss_mb": 1449.9,
+   "month": "2019-11",
+   "day": "2019-11-17"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 5.16,
+   "peak_rss_mb": 1578.9,
+   "month": "2019-11",
+   "day": "2019-11-18"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 4.041,
+   "peak_rss_mb": 1748.7,
+   "month": "2019-11",
+   "day": "2019-11-18"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 10.21,
+   "peak_rss_mb": 1542.3,
+   "month": "2019-11",
+   "day": "2019-11-18"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.862,
+   "peak_rss_mb": 763.0,
+   "month": "2019-11",
+   "day": "2019-11-18"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.825,
+   "peak_rss_mb": 856.6,
+   "month": "2019-11",
+   "day": "2019-11-18"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.378,
+   "peak_rss_mb": 1710.0,
+   "month": "2019-11",
+   "day": "2019-11-19"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.517,
+   "peak_rss_mb": 1403.8,
+   "month": "2019-11",
+   "day": "2019-11-19"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 5.628,
+   "peak_rss_mb": 1211.9,
+   "month": "2019-11",
+   "day": "2019-11-19"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.641,
+   "peak_rss_mb": 717.7,
+   "month": "2019-11",
+   "day": "2019-11-19"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.806,
+   "peak_rss_mb": 764.6,
+   "month": "2019-11",
+   "day": "2019-11-19"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.789,
+   "peak_rss_mb": 1193.6,
+   "month": "2019-11",
+   "day": "2019-11-20"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.864,
+   "peak_rss_mb": 1370.0,
+   "month": "2019-11",
+   "day": "2019-11-20"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 6.025,
+   "peak_rss_mb": 1087.8,
+   "month": "2019-11",
+   "day": "2019-11-20"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.82,
+   "peak_rss_mb": 657.5,
+   "month": "2019-11",
+   "day": "2019-11-20"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.428,
+   "peak_rss_mb": 743.5,
+   "month": "2019-11",
+   "day": "2019-11-20"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.25,
+   "peak_rss_mb": 1763.5,
+   "month": "2019-11",
+   "day": "2019-11-21"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.104,
+   "peak_rss_mb": 1576.7,
+   "month": "2019-11",
+   "day": "2019-11-21"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 5.348,
+   "peak_rss_mb": 1172.7,
+   "month": "2019-11",
+   "day": "2019-11-21"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.683,
+   "peak_rss_mb": 665.2,
+   "month": "2019-11",
+   "day": "2019-11-21"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.936,
+   "peak_rss_mb": 802.6,
+   "month": "2019-11",
+   "day": "2019-11-21"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.256,
+   "peak_rss_mb": 1170.7,
+   "month": "2019-11",
+   "day": "2019-11-22"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.202,
+   "peak_rss_mb": 1354.5,
+   "month": "2019-11",
+   "day": "2019-11-22"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 5.805,
+   "peak_rss_mb": 963.9,
+   "month": "2019-11",
+   "day": "2019-11-22"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.832,
+   "peak_rss_mb": 641.9,
+   "month": "2019-11",
+   "day": "2019-11-22"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.534,
+   "peak_rss_mb": 620.0,
+   "month": "2019-11",
+   "day": "2019-11-22"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.328,
+   "peak_rss_mb": 1497.2,
+   "month": "2019-11",
+   "day": "2019-11-23"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.729,
+   "peak_rss_mb": 1285.3,
+   "month": "2019-11",
+   "day": "2019-11-23"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 5.455,
+   "peak_rss_mb": 1090.9,
+   "month": "2019-11",
+   "day": "2019-11-23"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 2.06,
+   "peak_rss_mb": 688.9,
+   "month": "2019-11",
+   "day": "2019-11-23"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 6.052,
+   "peak_rss_mb": 531.9,
+   "month": "2019-11",
+   "day": "2019-11-23"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.357,
+   "peak_rss_mb": 1576.4,
+   "month": "2019-11",
+   "day": "2019-11-24"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.749,
+   "peak_rss_mb": 1399.8,
+   "month": "2019-11",
+   "day": "2019-11-24"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.869,
+   "peak_rss_mb": 956.8,
+   "month": "2019-11",
+   "day": "2019-11-24"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.805,
+   "peak_rss_mb": 631.8,
+   "month": "2019-11",
+   "day": "2019-11-24"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.053,
+   "peak_rss_mb": 784.1,
+   "month": "2019-11",
+   "day": "2019-11-24"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 5.061,
+   "peak_rss_mb": 921.1,
+   "month": "2019-11",
+   "day": "2019-11-25"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.093,
+   "peak_rss_mb": 1258.2,
+   "month": "2019-11",
+   "day": "2019-11-25"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.932,
+   "peak_rss_mb": 987.5,
+   "month": "2019-11",
+   "day": "2019-11-25"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.759,
+   "peak_rss_mb": 613.1,
+   "month": "2019-11",
+   "day": "2019-11-25"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.575,
+   "peak_rss_mb": 793.8,
+   "month": "2019-11",
+   "day": "2019-11-25"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.22,
+   "peak_rss_mb": 1032.9,
+   "month": "2019-11",
+   "day": "2019-11-26"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.867,
+   "peak_rss_mb": 1327.4,
+   "month": "2019-11",
+   "day": "2019-11-26"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.356,
+   "peak_rss_mb": 1115.7,
+   "month": "2019-11",
+   "day": "2019-11-26"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.432,
+   "peak_rss_mb": 640.5,
+   "month": "2019-11",
+   "day": "2019-11-26"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.95,
+   "peak_rss_mb": 686.1,
+   "month": "2019-11",
+   "day": "2019-11-26"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.663,
+   "peak_rss_mb": 1404.4,
+   "month": "2019-11",
+   "day": "2019-11-27"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.96,
+   "peak_rss_mb": 1475.1,
+   "month": "2019-11",
+   "day": "2019-11-27"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 3.957,
+   "peak_rss_mb": 1115.5,
+   "month": "2019-11",
+   "day": "2019-11-27"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.501,
+   "peak_rss_mb": 651.0,
+   "month": "2019-11",
+   "day": "2019-11-27"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.955,
+   "peak_rss_mb": 859.3,
+   "month": "2019-11",
+   "day": "2019-11-27"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.799,
+   "peak_rss_mb": 1224.4,
+   "month": "2019-11",
+   "day": "2019-11-28"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 2.93,
+   "peak_rss_mb": 1442.3,
+   "month": "2019-11",
+   "day": "2019-11-28"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.011,
+   "peak_rss_mb": 1172.9,
+   "month": "2019-11",
+   "day": "2019-11-28"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.325,
+   "peak_rss_mb": 655.3,
+   "month": "2019-11",
+   "day": "2019-11-28"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.887,
+   "peak_rss_mb": 810.9,
+   "month": "2019-11",
+   "day": "2019-11-28"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 4.143,
+   "peak_rss_mb": 1216.1,
+   "month": "2019-11",
+   "day": "2019-11-29"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.368,
+   "peak_rss_mb": 1510.5,
+   "month": "2019-11",
+   "day": "2019-11-29"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.547,
+   "peak_rss_mb": 1170.8,
+   "month": "2019-11",
+   "day": "2019-11-29"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.678,
+   "peak_rss_mb": 671.4,
+   "month": "2019-11",
+   "day": "2019-11-29"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 2.001,
+   "peak_rss_mb": 938.3,
+   "month": "2019-11",
+   "day": "2019-11-29"
+  },
+  {
+   "scope": "daily",
+   "stage": "silver",
+   "seconds": 3.95,
+   "peak_rss_mb": 1417.6,
+   "month": "2019-11",
+   "day": "2019-11-30"
+  },
+  {
+   "scope": "daily",
+   "stage": "sessions",
+   "seconds": 3.048,
+   "peak_rss_mb": 1507.7,
+   "month": "2019-11",
+   "day": "2019-11-30"
+  },
+  {
+   "scope": "daily",
+   "stage": "gold",
+   "seconds": 4.815,
+   "peak_rss_mb": 1155.6,
+   "month": "2019-11",
+   "day": "2019-11-30"
+  },
+  {
+   "scope": "engine",
+   "stage": "duckdb",
+   "seconds": 1.391,
+   "peak_rss_mb": 685.0,
+   "month": "2019-11",
+   "day": "2019-11-30"
+  },
+  {
+   "scope": "engine",
+   "stage": "polars",
+   "seconds": 1.754,
+   "peak_rss_mb": 844.6,
+   "month": "2019-11",
+   "day": "2019-11-30"
+  },
+  {
+   "scope": "daily",
+   "stage": "marts",
+   "seconds": 8.946,
+   "peak_rss_mb": 388.6
+  },
+  {
+   "scope": "daily",
+   "stage": "check",
+   "seconds": 0.752,
+   "peak_rss_mb": 159.8
+  }
+ ]
+}

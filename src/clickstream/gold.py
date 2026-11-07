@@ -323,7 +323,9 @@ def build_marts(paths: Paths, manifest: Manifest, force: bool = False, log=print
     return True
 
 
-def build(paths: Paths, dates: list[date] | None = None, force: bool = False, log=print) -> list[date]:
+def build(
+    paths: Paths, dates: list[date] | None = None, force: bool = False, marts: bool = True, log=print
+) -> list[date]:
     manifest = Manifest(paths.manifest)
     available = set(list_partitions(paths.sessionized))
     dates = dates if dates is not None else sorted(available)
@@ -333,5 +335,6 @@ def build(paths: Paths, dates: list[date] | None = None, force: bool = False, lo
             built.append(d)
             log(f"gold: built {d}")
     log(f"gold: {len(built)} built, {len(dates) - len(built)} up to date")
-    build_marts(paths, manifest, force=force or bool(built), log=log)
+    if marts:  # global aggregates over all dates: run once per batch, not per day
+        build_marts(paths, manifest, force=force or bool(built), log=log)
     return built
