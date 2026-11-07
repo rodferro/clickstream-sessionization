@@ -142,3 +142,32 @@ def test_engine_outputs_have_common_schema():
     for name in ENGINES:
         a, _ = run_engine(name, ev, empty_carry(), ts("2019-10-02 00:00:00"), 1800)
         assert a.schema == ASSIGNMENT_SCHEMA
+
+
+def test_sustained_activity_bot_rule(paths, tmp_path, monkeypatch):
+    from clickstream import config
+
+    monkeypatch.setattr(config, "BOT_SUSTAINED_MIN_ACTIVE_DAYS", 3)
+    monkeypatch.setattr(config, "BOT_SUSTAINED_MIN_EVENTS_PER_ACTIVE_DAY", 4)
+    ev = []
+    for day in (1, 2, 3):
+        for k in range(5):  # 5 events/day on 3 days, never buys -> flagged
+            ev.append((f"2019-10-0{day} 10:0{k}:00", "view", 7, 70, 20.0, "botco", "toys.robot"))
+        for k in range(5):  # same activity but buys once -> not flagged
+            ev.append((f"2019-10-0{day} 11:0{k}:00", "view", 8, 80, 20.0, "acme", "electronics.audio"))
+        ev.append(
+            (f"2019-10-0{day} 12:00:00", "view", 9, 80, 20.0, "acme", "electronics.audio")
+        )  # too few events
+    ev.append(("2019-10-03 11:30:00", "purchase", 8, 80, 20.0, "acme", "electronics.audio"))
+    run_all(paths, write_csv(tmp_path / "b.csv", ev))
+    marts = paths.gold_table("marts")
+    flagged = read(marts / "bot_users_sustained.parquet")
+    assert [(r["month"], r["user_id"], r["active_days"], r["events"]) for r in flagged] == [
+        ("2019-10", 7, 3, 15)
+    ]
+    conv = {r["category_top"]: r for r in read(marts / "conversion_by_category.parquet")}
+    assert "toys" not in conv  # all of user 7's sessions removed
+    assert conv["electronics"]["sessions"] == 6 and conv["electronics"]["sessions_purchased"] == 1
+    dur = read(marts / "duration_by_segment.parquet")
+    cats = {r["segment"]: r["sessions"] for r in dur if r["segment_type"] == "category_top"}
+    assert cats == {"electronics": 6}

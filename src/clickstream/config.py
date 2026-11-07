@@ -38,10 +38,16 @@ EVENT_TIME_FORMAT = "%Y-%m-%d %H:%M:%S UTC"
 EVENT_TYPES = ("view", "cart", "remove_from_cart", "purchase")
 
 # --- Suspected bots ------------------------------------------------------------------------
-# Flagged per user and UTC day; sessions touching a flagged user-day get suspect_bot = true.
-# Flagged rows are kept, never dropped. Segment/conversion marts exclude them.
+# Day rule, per user and UTC day: sessions touching a flagged user-day get suspect_bot = true.
+# Flagged rows are kept, never dropped. Segment/conversion marts exclude both bot rules.
 BOT_MAX_EVENTS_PER_MINUTE = 30  # >= this many events in one calendar minute
 BOT_MAX_EVENTS_PER_DAY = 1000  # >= this many events in one UTC day
+# Sustained activity, per user and calendar month (applied in the marts and the report):
+# a user active on many days, with many events per active day, who never buys that month.
+# 100 events/day is above nearly every user with 20+ active days who did buy (see analysis.md).
+BOT_SUSTAINED_MIN_ACTIVE_DAYS = 20
+BOT_SUSTAINED_MIN_EVENTS_PER_ACTIVE_DAY = 100
+BOT_SUSTAINED_MAX_PURCHASES = 0
 
 # --- Gold segments -------------------------------------------------------------------------
 # Upper-exclusive price band edges for the entry product's price.

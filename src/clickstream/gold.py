@@ -8,8 +8,16 @@ Partitioned by session_date (UTC date of the session's first event):
                   per brand. Additive across dates (a session lives in exactly one date), so the
                   conversion marts are sums over it rather than a scan of every session item.
 
-Global marts (recomputed when any partition changes, from gold only, excluding suspect bots):
+Global marts (recomputed when any partition changes; exclude both kinds of suspected bot):
+  bot_users_sustained  users flagged by the sustained-activity rule, per calendar month
   conversion_by_category, conversion_by_brand, duration_by_segment
+
+Two bot rules (thresholds in config.py):
+  day rule (silver, per user-day): a burst of events in one minute or a very busy day. Applied
+    incrementally; sessions carry `suspect_bot` and daily_metrics' 'non_bot' rows exclude them.
+  sustained rule (marts, per user and calendar month): many active days, many events per active
+    day, no purchase. Needs a full month of data, so it is applied in the marts and the report
+    only, not in daily_metrics.
 
 Sessions that start on S and continue past midnight have events in later sessionized
 partitions. The carry-over state says exactly which: S+1 is read if carry(S) holds a session
@@ -250,12 +258,39 @@ def build_date(
     return True
 
 
+def sustained_rule() -> tuple[int, int, int]:
+    return (
+        config.BOT_SUSTAINED_MIN_ACTIVE_DAYS,
+        config.BOT_SUSTAINED_MIN_EVENTS_PER_ACTIVE_DAY,
+        config.BOT_SUSTAINED_MAX_PURCHASES,
+    )
+
+
+def sustained_bots_sql(silver_glob: str) -> str:
+    """Users flagged by the sustained-activity rule, one row per (month, user)."""
+    return f"""
+        SELECT strftime(event_time, '%Y-%m') AS month, user_id,
+               count(DISTINCT event_time::DATE) AS active_days, count(*) AS events,
+               count(*) / count(DISTINCT event_time::DATE) AS events_per_active_day,
+               count(*) FILTER (event_type = 'purchase') AS purchases
+        FROM read_parquet({silver_glob}, hive_partitioning=false)
+        GROUP BY 1, 2
+        HAVING count(DISTINCT event_time::DATE) >= {config.BOT_SUSTAINED_MIN_ACTIVE_DAYS}
+           AND count(*) / count(DISTINCT event_time::DATE) >= {config.BOT_SUSTAINED_MIN_EVENTS_PER_ACTIVE_DAY}
+           AND count(*) FILTER (event_type = 'purchase') <= {config.BOT_SUSTAINED_MAX_PURCHASES}"""
+
+
 def build_marts(paths: Paths, manifest: Manifest, force: bool = False, log=print) -> bool:
     dates = list_partitions(paths.gold_table("sessions"), "session_date")
     if not dates:
         return False
+    silver_days = list_partitions(paths.silver)
     in_fp = fingerprint_values(
-        GOLD_VERSION, config.MIN_SESSIONS_PER_BRAND, [manifest.get("gold", d.isoformat()) for d in dates]
+        GOLD_VERSION,
+        config.MIN_SESSIONS_PER_BRAND,
+        sustained_rule(),
+        [manifest.get("gold", d.isoformat()) for d in dates],
+        [manifest.get("silver", d.isoformat()) for d in silver_days],
     )
     marts_dir = paths.gold_table("marts")
     out_fp = fingerprint_dir(marts_dir)
@@ -264,11 +299,41 @@ def build_marts(paths: Paths, manifest: Manifest, force: bool = False, log=print
     con = connect()
     sessions = sql_str(str(paths.gold_table("sessions") / "*" / "*.parquet"))
     conv = sql_str(str(paths.gold_table("conversion_daily") / "*" / "*.parquet"))
+    items = sql_str(str(paths.gold_table("session_items") / "*" / "*.parquet"))
+    silver = sql_str(str(paths.silver / "*" / "*.parquet"))
+
+    # Sustained-activity bots: per calendar month of events, many active days, many events per
+    # active day, no purchase. Needs the whole month, so it lives here and not in the per-day stages.
+    con.execute(f"CREATE TEMP TABLE sb AS {sustained_bots_sql(silver)}")
+    is_sustained = "EXISTS (SELECT 1 FROM sb WHERE sb.user_id = {u} AND sb.month = strftime({d}, '%Y-%m'))"
     con.execute(
         f"""CREATE VIEW s AS SELECT duration_s, n_events, entry_category_top, entry_brand, entry_price_band
-            FROM read_parquet({sessions}, hive_partitioning=false) WHERE NOT suspect_bot"""
+            FROM read_parquet({sessions}, hive_partitioning=false) s0
+            WHERE NOT suspect_bot AND NOT {is_sustained.format(u="s0.user_id", d="s0.session_date")}"""
     )
-    con.execute(f"CREATE VIEW cd AS SELECT * FROM read_parquet({conv}, hive_partitioning=false)")
+    # conversion_daily already excludes day-rule bots; subtract the sustained bots' sessions,
+    # aggregated the same way (one row per session and dimension value).
+    con.execute(
+        f"""CREATE TEMP TABLE bot_items AS
+            SELECT i.* FROM read_parquet({items}, hive_partitioning=true) i
+            WHERE NOT i.suspect_bot
+              AND {is_sustained.format(u="split_part(i.session_id, '-', 1)::BIGINT", d="i.session_date")}"""
+    )
+    con.execute(
+        f"""CREATE VIEW cd AS
+            SELECT dim_type, dim_value, sessions, sessions_carted, sessions_purchased, revenue
+            FROM read_parquet({conv}, hive_partitioning=false)
+            UNION ALL
+            SELECT dim_type, dim_value, -count(*), -count(*) FILTER (c), -count(*) FILTER (p), -sum(r)
+            FROM (
+              SELECT session_id, 'category_top' AS dim_type, category_top AS dim_value,
+                     bool_or(carted) AS c, bool_or(purchased) AS p, sum(revenue) AS r
+              FROM bot_items GROUP BY 1, 2, 3
+              UNION ALL
+              SELECT session_id, 'brand', brand, bool_or(carted), bool_or(purchased), sum(revenue)
+              FROM bot_items GROUP BY 1, 2, 3
+            ) GROUP BY dim_type, dim_value"""
+    )
 
     def conversion(dim: str, having: str = "") -> str:
         return f"""
@@ -306,7 +371,8 @@ def build_marts(paths: Paths, manifest: Manifest, force: bool = False, log=print
     for seg in segments:
         con.execute(f"INSERT INTO dur {durations(*seg)}")
     queries = {
-        "conversion_by_category": conversion("category_top"),
+        "bot_users_sustained": "SELECT * FROM sb ORDER BY month, user_id",
+        "conversion_by_category": conversion("category_top", "HAVING sum(sessions) > 0"),
         "conversion_by_brand": conversion("brand", f"HAVING sum(sessions) >= {min_b}"),
         "duration_by_segment": """
         SELECT segment_type, segment, sessions,
