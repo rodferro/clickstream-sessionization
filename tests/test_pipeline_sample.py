@@ -159,3 +159,13 @@ def test_late_data_reprocesses_only_affected_days(built, tmp_path):
         if "session_date=2019-10-01" in k or "session_date=2019-10-03" in k or "session_date=2019-10-04" in k:
             assert after[k] == before[k], k
     assert not check.run_checks(built, log=quiet).failed_errors
+
+
+def test_report_on_sample(built):
+    from clickstream import report
+
+    out = report.write_report(built, ["2019-10"], log=quiet)
+    text = out.read_text()
+    assert "## Funnel" in text and "### Sensitivity to the inactivity threshold N" in text
+    for fig in ("session_duration", "events_per_session", "funnel", "sensitivity"):
+        assert (built.reports / "figures" / f"{fig}.png").exists()
