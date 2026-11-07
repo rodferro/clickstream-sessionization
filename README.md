@@ -46,7 +46,7 @@ flowchart LR
 | | `data/silver/sessionized_events/event_date=D/` | Silver rows plus `session_id`, `session_start` |
 | state | `data/state/carry/event_date=D/`, `manifest.json` | Sessions open at the end of D; input/output fingerprints |
 | gold | `data/gold/{sessions,session_items,daily_metrics,conversion_daily}/session_date=D/` | Partitioned by the session's start date |
-| | `data/gold/marts/*.parquet` | Conversion by category and brand; median/p90 duration by segment |
+| | `data/gold/marts/*.parquet` | Users flagged by the sustained bot rule; conversion by category and brand; median/p90 duration by segment (all excluding suspected bots) |
 
 Everything under `data/` except the synthetic sample is gitignored.
 
@@ -194,12 +194,31 @@ first copy. Zero-price rows and null `user_session` are kept and flagged. Result
 | 2019-10 | 30,220 (cart 28,073, view 2,071, purchase 76) | 76 (24,289.64) | 0 | 68,670 | none |
 | 2019-11 | 100,519 (cart 98,912, view 1,598, purchase 9) | 9 (1,809.69) | 0 | 187,987 | daily volume on Nov 14-17 (a spike, up to 6,488,924 events on Nov 16) |
 
-**Suspected bots.** A user-day is flagged when the user has at least 30 events in one calendar minute or
-at least 1,000 events in the UTC day (`BOT_MAX_EVENTS_PER_MINUTE`, `BOT_MAX_EVENTS_PER_DAY` in
-[`config.py`](src/clickstream/config.py)). Rows are kept; sessions touching a flagged user-day get
-`suspect_bot = true`, and the segment marts exclude them. Flagged: 7 users and 2,869 events in October,
-37 users and 47,320 events in November (0.01% and 0.07% of events). These thresholds are deliberately
-conservative; see Limitations.
+**Suspected bots.** Two rules, with thresholds in [`config.py`](src/clickstream/config.py). Flagged
+rows are always kept; the segment marts and the report's non-bot figures exclude both rules.
+
+- **Day rule** (per user and UTC day, applied incrementally in silver): at least 30 events in one
+  calendar minute or at least 1,000 events in the day (`BOT_MAX_EVENTS_PER_MINUTE`,
+  `BOT_MAX_EVENTS_PER_DAY`). Sessions touching a flagged user-day get `suspect_bot = true`.
+- **Sustained rule** (per user and calendar month): active on at least 20 days, at least 100 events per
+  active day, and no purchase that month (`BOT_SUSTAINED_MIN_ACTIVE_DAYS`,
+  `BOT_SUSTAINED_MIN_EVENTS_PER_ACTIVE_DAY`, `BOT_SUSTAINED_MAX_PURCHASES`). It catches users like
+  October's most active one (31 active days, 7,436 events, no purchases), whom the day rule misses.
+  It needs a whole month, so it's applied in the marts (`gold/marts/bot_users_sustained.parquet`) and
+  the report, not in the per-day `daily_metrics` table, whose `non_bot` rows exclude the day rule only.
+  The 100 events/day bar sits at the top of real buyers: among users with 20+ active days and at least
+  one purchase, the most active averaged 103.1 events per active day in October and 142.3 in November.
+
+| Month | Rule | Users flagged | Events | Share of events | Sessions |
+|---|---|---:|---:|---:|---:|
+| 2019-10 | day rule | 7 | 2,869 | 0.007% | 16 |
+| 2019-10 | sustained rule | 2 | 11,449 | 0.027% | 441 |
+| 2019-10 | either | 9 | 14,318 | 0.034% | 457 |
+| 2019-11 | day rule | 37 | 47,320 | 0.070% | 162 |
+| 2019-11 | sustained rule | 8 | 43,056 | 0.064% | 1,095 |
+| 2019-11 | either | 43 | 84,323 | 0.125% | 1,246 |
+
+Events are those on flagged user-days (day rule) or all of the user's events that month (sustained rule).
 
 ## Results
 
@@ -276,6 +295,9 @@ clickstream compare-engines --engines duckdb,polars,python --start 2019-11-16 --
 clickstream report                                 # reports/analysis.md + figures
 ```
 
+`clickstream report` is a full recompute over every built month (15-20 minutes for Oct-Nov on this
+laptop; the runtime is in the footer of `analysis.md`) and isn't part of the incremental pipeline.
+
 Settings: `CLICKSTREAM_DATA` (data root, default `data`), `CLICKSTREAM_DUCKDB_MEMORY` (default `2GB`).
 Session gap, bot thresholds, price bands and DQ thresholds are in [`config.py`](src/clickstream/config.py).
 
@@ -343,14 +365,14 @@ limit DuckDB spills to disk on those days, which is why they are the slow ones.
 - **Timings are from one run on a fanless laptop** under sustained load; expect variance between runs.
   Memory figures are the more stable result.
 - **Global steps aren't incremental.** The marts and `clickstream report` recompute over all data.
-  The report's `user_session` comparison (eight thresholds, every event) is the slowest step: the
-  footer of `analysis.md` gives its runtime.
 - **UTC days.** The store's timezone isn't published, so day boundaries and daily metrics are UTC.
 - **No device data.** The original take-home's browser/OS/device breakdown can't be reproduced; entry
   category, brand and price band stand in for it.
-- **Bot detection is a simple, conservative heuristic.** It flags very few users; for example, the most
-  active October user (7,436 events, no purchases, active all 31 days) stays under both thresholds.
-  It's a flag for analysis, not a filter.
+- **Bot detection is heuristic.** Two threshold rules (bursts within a day, and sustained heavy
+  activity without purchases over a month) flag 9 users in October and 43 in November. Bots that
+  browse slowly, or that buy, aren't caught. The sustained rule only works on complete months: with
+  fewer than 20 days of a month ingested, nobody can reach the active-days threshold. Flags are for
+  analysis, not filters.
 - **Exact duplicates are dropped.** Some may be genuine double clicks; they're counted per event type
   so the effect is visible.
 - **Late data reprocessing** rebuilds the late day plus each following day whose carry-over
@@ -382,6 +404,11 @@ This project uses the
 dataset on Kaggle. Thanks to [REES46 Marketing Platform](https://rees46.com/) for the data, collected
 by the Open CDP project. The dataset page allows free use when the source is credited with links to
 the dataset page and to REES46. No raw or derived data from it is committed here; see [`NOTICE`](NOTICE).
+
+## License
+
+The code is under the [MIT License](LICENSE). The dataset is not part of this repository and has its
+own terms; see [`NOTICE`](NOTICE).
 
 ## Origin
 
