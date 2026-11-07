@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=75"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,6 +7,8 @@ name = "clickstream"
 version = "0.1.0"
 description = "Reproducible batch pipeline: raw e-commerce clickstream -> bronze/silver/gold sessions and session analytics"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "duckdb==2.0.0",
